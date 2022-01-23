@@ -9,9 +9,9 @@ const controllers = require('./controllers');
 
 app.use(Express.json());
 
-app.use('/user', controllers.user);
-app.use('/mech', controllers.mech);
-app.use('/wpn', controllers.wpn);
+app.use('/user', controllers.userTable);
+app.use('/mech', controllers.mechTable);
+app.use('/wpn', controllers.wpnTable);
 
 dbConnection.authenticate()
     .then(()=> dbConnection.sync())

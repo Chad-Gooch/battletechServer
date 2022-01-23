@@ -1,5 +1,5 @@
-const Express_wpn = require('express');
-const router_wpn = Express_wpn.Router();
+const Express = require('express');
+const router = Express.Router();
 
 const { WeaponModel } = require('../models');
 const validateJWTwpn = require('../middleware/validate-jwt');
@@ -79,4 +79,4 @@ router.delete("/delete/:id", validateJWTwpn, async (req, res) => {
     }
 })
 
-module.exports = router_wpn;
+module.exports = router;

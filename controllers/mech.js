@@ -1,5 +1,5 @@
-const Express_mech = require('express');
-const router_mech = Express_mech.Router();
+const Express = require('express');
+const router = Express.Router();
 
 const { MechModel } = require('../models');
 const validateJWTmech = require('../middleware/validate-jwt');
@@ -83,4 +83,4 @@ router.delete("/delete/:id", validateJWTmech, async (req, res) => {
     }
 })
 
-module.exports = router_mech;
+module.exports = router;
