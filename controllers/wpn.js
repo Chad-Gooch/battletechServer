@@ -2,9 +2,9 @@ const Express = require('express');
 const router = Express.Router();
 
 const { WeaponModel } = require('../models');
-const validateJWTwpn = require('../middleware/validate-jwt');
+const validateJWT = require('../middleware/validate-jwt');
 
-router.post("/add", validateJWTwpn, async (req, res) => {
+router.post("/add", validateJWT, async (req, res) => {
     const { model,type,weight,shots,damage,stability,heat,minRange,maxRange,DLC } = req.body.Wpn;
     const { isAdmin } = req.user;
     const WpnStat = {
@@ -30,7 +30,7 @@ router.post("/add", validateJWTwpn, async (req, res) => {
     }
 });
 
-router.put("/update/:id", validateJWTwpn, async (req, res) => {
+router.put("/update/:id", validateJWT, async (req, res) => {
     const { model,type,weight,shots,damage,stability,heat,minRange,maxRange,DLC } = req.body.Wpn;
     const { isAdmin } = req.user;
     if (isAdmin) {
@@ -63,7 +63,7 @@ router.get("/", async (req, res) => {
      }
 });
 
-router.delete("/delete/:id", validateJWTwpn, async (req, res) => {
+router.delete("/delete/:id", validateJWT, async (req, res) => {
 
     try{
         const query = {

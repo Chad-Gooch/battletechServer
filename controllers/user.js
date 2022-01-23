@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { UserModel } = require('../models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const validateJWT = require('../middleware/validate-jwt');
 
 router.post('/register', async (req, res) => {
     let { email, password } = req.body.user;
@@ -71,21 +72,19 @@ router.post("/login", async (req, res) => {
         })
     }
 });
-/*
-router.put("/update", validateJWTmech, async (req, res) => {
+
+router.put("/update/:id", validateJWT, async (req, res) => {
     const { collection,mech1,mech2,mech3,mech4 } = req.body.userData;
-    const { idNumber } = req.user;
        
     UserModel.update({
         collection:collection,
         mech1:mech1,
         mech2:mech2,
         mech3:mech3,
-        mech4:mech4,
-    },  {where:{idNumber:idNumber}})
+        mech4:mech4
+    },  {where:{idNumber:req.params.id}})
         .then((updateUser) => res.status(200).json(updateUser))
         .catch((err)=>res.status(500).json({error:err}))
-    }
-});
-*/
+    })
+
 module.exports = router;

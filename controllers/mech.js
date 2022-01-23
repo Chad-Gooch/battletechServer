@@ -2,9 +2,9 @@ const Express = require('express');
 const router = Express.Router();
 
 const { MechModel } = require('../models');
-const validateJWTmech = require('../middleware/validate-jwt');
+const validateJWT = require('../middleware/validate-jwt');
 
-router.post("/add", validateJWTmech, async (req, res) => {
+router.post("/add", validateJWT, async (req, res) => {
     const { model,dlc,weight,freeTon,walk,maxJet,head,rightArm,rightTorso,center,leftTorso,leftArm } = req.body.mech;
     const { isAdmin } = req.user;
     const mechStat = {
@@ -32,7 +32,7 @@ router.post("/add", validateJWTmech, async (req, res) => {
     }
 });
 
-router.put("/update/:id", validateJWTmech, async (req, res) => {
+router.put("/update/:id", validateJWT, async (req, res) => {
     const { model,dlc,weight,freeTon,walk,maxJet,head,rightArm,rightTorso,center,leftTorso,leftArm } = req.body.mech;
     const { isAdmin } = req.user;
     if (isAdmin) {
@@ -67,7 +67,7 @@ router.get("/", async (req, res) => {
      }
 });
 
-router.delete("/delete/:id", validateJWTmech, async (req, res) => {
+router.delete("/delete/:id", validateJWT, async (req, res) => {
 
     try{
         const query = {
