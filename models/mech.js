@@ -1,7 +1,7 @@
 const {DataTypes} = require('sequelize');
 const db = require('../db');
 
-const Mech = db.define('user', {
+const Mech = db.define('mech', {
     model: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -12,19 +12,19 @@ const Mech = db.define('user', {
         allowNull: false,
     },
     weight: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
     freeTon: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
     walk: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
     maxJet: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
     head: {
