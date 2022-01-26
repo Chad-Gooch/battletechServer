@@ -9,7 +9,7 @@ const Mech = db.define('mech', {
     },
     DLC: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     weight: {
         type: DataTypes.INTEGER,
