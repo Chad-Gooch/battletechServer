@@ -73,11 +73,21 @@ router.post("/login", async (req, res) => {
     }
 });
 
-router.put("/update/:id", validateJWT, async (req, res) => {
-    const { collection,mech1,mech2,mech3,mech4 } = req.body.userData;
+router.put("/collection/:id", validateJWT, async (req, res) => {
+    const { collection } = req.body.userData;
        
     UserModel.update({
         collection:collection,
+
+    },  {where:{idNumber:req.params.id}})
+        .then((updateUser) => res.status(200).json(updateUser))
+        .catch((err)=>res.status(500).json({error:err}))
+    })
+
+router.put("/team/:id", validateJWT, async (req, res) => {
+    const { mech1,mech2,mech3,mech4 } = req.body.userData;
+        
+    UserModel.update({
         mech1:mech1,
         mech2:mech2,
         mech3:mech3,
