@@ -73,26 +73,37 @@ router.post("/login", async (req, res) => {
     }
 });
 
-router.put("/collection/:id", validateJWT, async (req, res) => {
-    const { collection } = req.body.userData;
+router.get("/", validateJWT, async (req,res) =>{
+    const { idNumber } = req.user;
+    
+    UserModel.findOne({where:{idNumber:idNumber}})
+    .then((update)=> res.status(200).json({collection:update.collection,mech1:update.mech1,mech2:update.mech2,mech3:update.mech3,mech4:update.mech4}))
+    .catch((err) => res.status(500).json({error:err}))
+    });
+
+
+router.put("/collection", validateJWT, async (req, res) => {
+    const { collection } = req.body.collection;
+    const { idNumber } = req.user;
        
     UserModel.update({
         collection:collection,
 
-    },  {where:{idNumber:req.params.id}})
+    },  {where:{idNumber:idNumber}})
         .then((updateUser) => res.status(200).json(updateUser))
         .catch((err)=>res.status(500).json({error:err}))
     })
 
-router.put("/team/:id", validateJWT, async (req, res) => {
-    const { mech1,mech2,mech3,mech4 } = req.body.userData;
+router.put("/team", validateJWT, async (req, res) => {
+    const { mech1,mech2,mech3,mech4 } = req.body.team;
+    const {idNumber} = req.user;
         
     UserModel.update({
         mech1:mech1,
         mech2:mech2,
         mech3:mech3,
         mech4:mech4
-    },  {where:{idNumber:req.params.id}})
+    },  {where:{idNumber:idNumber}})
         .then((updateUser) => res.status(200).json(updateUser))
         .catch((err)=>res.status(500).json({error:err}))
     })

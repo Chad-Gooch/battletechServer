@@ -33,13 +33,13 @@ router.post("/add", validateJWT, async (req, res) => {
 });
 
 router.put("/update/:id", validateJWT, async (req, res) => {
-    const { model,dlc,weight,freeTon,walk,maxJet,head,rightArm,rightTorso,center,leftTorso,leftArm } = req.body.mech;
+    const { model,DLC,weight,freeTon,walk,maxJet,head,rightArm,rightTorso,center,leftTorso,leftArm } = req.body.mech;
     const { isAdmin } = req.user;
     if (isAdmin) {
         
         MechModel.update({
             model:model,
-            DLC:dlc,
+            DLC:DLC,
             weight:weight,
             freeTon:freeTon,
             walk:walk,
