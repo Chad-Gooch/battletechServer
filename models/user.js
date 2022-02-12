@@ -25,22 +25,27 @@ const User = db.define('user', {
     },
     collection: {
         type: DataTypes.STRING,
+        defaultValue: '[]',
         allowNull: true,
     },
     mech1: {
         type: DataTypes.STRING,
+        defaultValue: '[]',
         allowNull: true,
     },
     mech2: {
         type: DataTypes.STRING,
+        defaultValue: '[]',
         allowNull: true,
     },
     mech3: {
         type: DataTypes.STRING,
+        defaultValue: '[]',
         allowNull: true,
     },
     mech4: {
         type: DataTypes.STRING,
+        defaultValue: '[]',
         allowNull: true,
     }
 });
